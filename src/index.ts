@@ -107,7 +107,7 @@ const searchFlibusta = async (title: string) => {
   for (const match of bookMatches) {
     const { author, title, link } = match.groups;
     books.push({
-      authors: [author],
+      authors: [author.replaceAll(/<.+?\/?>/g, "")],
       title: title.replaceAll(/<.+?\/?>/g, ""),
       format: "epub",
       link: `http://flibusta.is${link}/epub`,
