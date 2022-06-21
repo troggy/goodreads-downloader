@@ -167,7 +167,7 @@ const downloadBook = async (fileLink, status, fileTitle?: string) => {
     return true;
   }
   const response = await fetch(fileLink).catch(e => {
-    return { ok: false }
+    return { ok: false, body: '' }
   });
 
   if (!response.ok) {
