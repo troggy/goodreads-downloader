@@ -195,10 +195,10 @@ const downloadBook = async (fileLink, status, fileTitle?: string) => {
 const n = (str: string) => str.toLowerCase().replace(/[,-;—!?.]/g, "");
 
 const report =
-  (base: string) => (str: string, status?: boolean, final?: boolean) =>
+  (base: string) => (str: string, status?: true | false | 'deferred', final?: boolean) =>
     final
       ? console.log(
-          `\r${status ? "✅" : "🔴"} ${base}.. ${str.padEnd(40, " ")}`
+          `\r${status === true ? "✅" : !status ? "🔴" : "🕐"} ${base}.. ${str.padEnd(40, " ")}`
         )
       : process.stdout.write(`\r${base}.. ${str.padEnd(40, " ")}`);
 
@@ -273,7 +273,7 @@ for (let i = 1; i < data.length; i++) {
       await writeFile(`.store.json`, JSON.stringify(store, null, 2))
     }
   } else {
-    status("Scheduled check on Flibusta", false, true);
+    status("Scheduled check on Flibusta", 'deferred', true);
     flibustaRequests.push({ id: bookData[0], title: bookData[Title], author: bookData[Author] });
   }
 }
