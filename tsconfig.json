@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "outDir": "./bin",
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    /* rest of the default options */
+  }
+}
