@@ -166,7 +166,9 @@ const downloadBook = async (fileLink, status, fileTitle?: string) => {
     status(`${title}`, true, true);
     return true;
   }
-  const response = await fetch(fileLink);
+  const response = await fetch(fileLink).catch(e => {
+    return { ok: false }
+  });
 
   if (!response.ok) {
     status("failed", false, true);
